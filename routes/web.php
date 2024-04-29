@@ -2,8 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\ClientController;
 
 Route::get('test20',[MyController::class,'my_data']);
+
+Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
+Route::get('addClient',[ClientController::class,'create']);
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,9 +36,7 @@ Route::get('form1',function(){
     return view('form1');
 });
 
-Route::post('recForm1', function(){
-    return 'Data received';
-})->name('receiveForm1');
+Route::post('recForm1', [MyController::class,'receiveData'])->name('receiveForm1');
 
 // Route::fallback(function(){
 //     // return 'The required is not found';
