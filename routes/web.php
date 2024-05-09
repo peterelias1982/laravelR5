@@ -7,8 +7,8 @@ use App\Http\Controllers\ClientController;
 Route::get('test20',[MyController::class,'my_data']);
 
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
-Route::get('addClient',[ClientController::class,'create']);
-
+Route::get('addClient',[ClientController::class,'create'])->name('addClient');
+Route::get('clients',[ClientController::class,'index'])->name('clients');
 
 Route::get('/', function () {
     return view('welcome');
