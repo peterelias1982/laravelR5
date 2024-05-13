@@ -8,7 +8,11 @@ Route::get('test20',[MyController::class,'my_data']);
 
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
 Route::get('addClient',[ClientController::class,'create'])->name('addClient');
-Route::get('clients',[ClientController::class,'index'])->name('clients');
+Route::get('/clients', [ClientController::class, 'index'])->name('clients');
+
+Route::post('insertStudent',[StudentController::class,'store'])->name('insertStudent');
+Route::get('addStudent',[StudentController::class,'create'])->name('addStudent');
+Route::get('/Students',[StudentController::class,'index'])->name('Students');
 
 Route::get('/', function () {
     return view('welcome');
