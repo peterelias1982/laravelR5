@@ -13,6 +13,9 @@ Route::get('editClients/{id}',[ClientController::class,'edit'])->name('editClien
 Route::put('updateClients/{id}',[ClientController::class,'update'])->name('updateClients');
 Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient');
 Route::delete('delClient',[ClientController::class,'destroy'])->name('delClient');
+Route::delete('forceDeleteClient',[ClientController::class,'forceDelete'])->name('forceDeleteClient');
+Route::get('trashClient',[ClientController::class,'trash'])->name('trashClient');
+Route::get('restoreClient/{id}',[ClientController::class,'restore'])->name('restoreClient');
 
 Route::get('/', function () {
     return view('welcome');

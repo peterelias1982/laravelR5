@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Clients</title>
+  <title>Trashed</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -13,7 +13,7 @@
     @include('includes.nav')
 
 <div class="container">
-  <h2>Clients Data</h2>
+  <h2>Trashed Clients</h2>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -21,22 +21,22 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Website</th>
-        <th>Edit</th>
+        <th>Restore</th>
         <th>Show</th>
         <th>Delete</th>
       </tr>
     </thead>
     <tbody>
-      @foreach ($clients as $client)
+      @foreach ($trashed as $client)
       <tr>
         <td>{{ $client->clientName }}</td>
         <td>{{ $client->phone }}</td>
         <td>{{ $client->email }}</td>
         <td>{{ $client->website }}</td>
-        <td><a href="{{ route('editClients', $client->id)}}">Edit</a></td>
+        <td><a href="{{ route('restoreClient', $client->id)}}">Restore</a></td>
         <td><a href="{{ route('showClient', $client->id)}}">Show</a></td>
         <td>
-          <form action="{{ route('delClient')}}" method="POST">
+          <form action="{{ route('forceDeleteClient')}}" method="POST">
             @csrf
             @method('DELETE')
             <input type="hidden" value="{{ $client->id }}" name="id">

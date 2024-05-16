@@ -15,7 +15,14 @@
   <form action="{{ route('insertClient') }}" method="POST">
     @csrf
     <label for="clientName">Client name:</label><br>
+    <p style="color: red">
+      @error('clientName')
+        {{ $message }}
+      @enderror
+    </p>
+    
     <input type="text" id="clientName" name="clientName" class="form-control"><br>
+    
     <label for="phone">Phone:</label><br>
     <input type="text" id="phone" name="phone" class="form-control"><br><br>
     <label for="email">Email:</label><br>
