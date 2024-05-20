@@ -8,7 +8,6 @@ use DB;
 
 class ClientController extends Controller
 {
-    private $columns = ['clientName','phone', 'email','website'];
     /**
      * Display a listing of the resource.
      */
@@ -37,12 +36,16 @@ class ClientController extends Controller
         // $client->email = $request->email;
         // $client->website = $request->website;
         // $client->save();
+        // return dd($request->all());
         $data = $request->validate([
             'clientName' => 'required|max:100|min:5',
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
+            'city' => 'required|max:30'
         ]);
+
+        $data['active'] = isset($request->active);
         Client::create($data);
         return redirect('clients');
     }
@@ -70,7 +73,13 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Client::where('id', $id)->update($request->only($this->columns));
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required',
+        ]);
+        Client::where('id', $id)->update($data);
         return redirect('clients');
     }
 

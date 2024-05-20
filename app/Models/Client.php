@@ -13,6 +13,13 @@ class Client extends Model
         'clientName',
         'phone',
         'email',
-        'website'
+        'website',
+        'city',
+        'active',
     ];
+
+    // public function getActiveStatus()
+    // {
+    //     return $this->active ? 'Yes' : 'No';
+    // }
 }
