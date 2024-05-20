@@ -16,6 +16,7 @@ class Client extends Model
         'website',
         'city',
         'active',
+        'image',
     ];
 
     // public function getActiveStatus()

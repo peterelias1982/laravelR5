@@ -12,7 +12,7 @@
 <div class="container" style="margin-left: 20px ">
   <h2>Insert Client</h2>
 
-  <form action="{{ route('insertClient') }}" method="POST">
+  <form action="{{ route('insertClient') }}" method="POST" enctype="multipart/form-data">
     @csrf
     <label for="clientName">Client name:</label><br>
     <p style="color: red">
@@ -53,15 +53,19 @@
         {{ $message }}
       @enderror
     </p>
-    <select name="city" id="city" class="form-control" value="{{ old('city') }}">
+    <select name="city" id="city" class="form-control">
       <option value="">Please Select City</option>
-      <option value="Cairo">Cairo</option>
-      <option value="Giza">Giza</option>
-      <option value="Alex">Alex</option>
+      <option value="Cairo" {{ old('city') == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+      <option value="Giza" {{ old('city') == 'Giza' ? 'selected' : '' }}>Giza</option>
+      <option value="Alex" {{ old('city') == 'Alex' ? 'selected' : '' }}>Alex</option>
     </select>
     <br><br>
     <label for="active">Active:</label><br>
-    <input type="checkbox" id="active" name="active" class="form-control"><br><br>
+    <input type="checkbox" id="active" name="active" class="form-control" {{ old('active') ? 'checked' : '' }}><br><br>
+
+    <label for="image">Image:</label><br>
+    <input type="file" id="image" name="image" class="form-control"><br><br>
+
     <input type="submit" value="Submit">
   </form> 
 </div>
