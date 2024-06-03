@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
-use DB;
+use App\Traits\UploadFile;
 
 class ClientController extends Controller
 {
+    use UploadFile;
     /**
      * Display a listing of the resource.
      */
@@ -49,10 +50,11 @@ class ClientController extends Controller
             'image' => 'required',
         ], $messages);
 
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+        // $imgExt = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgExt;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
+        $fileName = $this->upload($request->image, 'assets/images');
 
         $data['image'] = $fileName;
 
@@ -90,7 +92,17 @@ class ClientController extends Controller
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
+            'city' => 'required|max:30',
+            'image' => 'sometimes|image', //nullable
         ], $messages);
+
+        if($request->hasFile('image')){
+            $fileName = $this->upload($request->image, 'assets/images');
+            $data['image'] = $fileName;
+            // Storage - unlink
+        }
+        
+        $data['active'] = isset($request->active);
         Client::where('id', $id)->update($data);
         return redirect('clients');
     }

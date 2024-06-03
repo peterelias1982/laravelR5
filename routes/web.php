@@ -18,7 +18,7 @@ Route::get('trashClient',[ClientController::class,'trash'])->name('trashClient')
 Route::get('restoreClient/{id}',[ClientController::class,'restore'])->name('restoreClient');
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('stacked');
 });
 
 Route::get('peter/{id?}', function($id = 0){
