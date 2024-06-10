@@ -8,7 +8,7 @@ Route::get('test20',[MyController::class,'my_data']);
 
 Route::post('insertClient',[ClientController::class,'store'])->name('insertClient');
 Route::get('addClient',[ClientController::class,'create'])->name('addClient');
-Route::get('clients',[ClientController::class,'index'])->name('clients');
+Route::get('clients',[ClientController::class,'index'])->middleware('verified')->name('clients');
 Route::get('editClients/{id}',[ClientController::class,'edit'])->name('editClients');
 Route::put('updateClients/{id}',[ClientController::class,'update'])->name('updateClients');
 Route::get('showClient/{id}',[ClientController::class,'show'])->name('showClient');
@@ -18,7 +18,7 @@ Route::get('trashClient',[ClientController::class,'trash'])->name('trashClient')
 Route::get('restoreClient/{id}',[ClientController::class,'restore'])->name('restoreClient');
 
 Route::get('/', function () {
-    return view('stacked');
+    return view('welcome');
 });
 
 Route::get('peter/{id?}', function($id = 0){
@@ -49,3 +49,6 @@ Route::post('recForm1', [MyController::class,'receiveData'])->name('receiveForm1
 //     // return 'The required is not found';
 //     return redirect('/');
 // });
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
