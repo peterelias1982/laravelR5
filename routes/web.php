@@ -45,6 +45,15 @@ Route::get('form1',function(){
 
 Route::post('recForm1', [MyController::class,'receiveData'])->name('receiveForm1');
 
+Route::get('genEmail', [MyController::class,'generalMail']);
+
+Route::get('mySession', [MyController::class,'myVal']);
+
+Route::get('restoreSession', [MyController::class,'restoreVal']);
+
+Route::get('deleteVal', [MyController::class,'deleteVal']);
+Route::get('sendClientMail', [MyController::class,'sendClientMail']);
+
 // Route::fallback(function(){
 //     // return 'The required is not found';
 //     return redirect('/');
