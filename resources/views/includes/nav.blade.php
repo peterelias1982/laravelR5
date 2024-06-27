@@ -8,6 +8,7 @@
         <li class="active"><a href="{{ route('addClient') }}">Add</a></li>
         <li><a href="{{ route('clients') }}">Clients</a></li>
         <li><a href="{{ route('trashClient') }}">Trash</a></li>
+        <li><a href="{{ route('facebookRedirect') }}">Login with facebook</a></li>
         @yield('menu')
         @stack('submenu')
       </ul>

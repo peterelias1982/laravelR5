@@ -60,6 +60,15 @@ Route::group(
     Route::get('deleteVal', [MyController::class,'deleteVal']);
     Route::get('sendClientMail', [MyController::class,'sendClientMail']);
 
+    Route::get('/auth/redirect', function () {
+             return Socialite::driver('facebook')->redirect();
+        })->name('facebookRedirect');
+
+    Route::get('/auth/callback', function () {
+            $user = Socialite::driver('facebook')->user();
+    });
+        
+
     // Route::fallback(function(){
     //     // return 'The required is not found';
     //     return redirect('/');

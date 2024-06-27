@@ -10,3 +10,4 @@ Artisan::command('inspire', function () {
 
 
 Schedule::command('user:expiration')->everyMinute();
+Schedule::command('db:backup')->everyMinute();

@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,5 +21,17 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+    }
+
+    protected function mapAdminRoutes()
+
+    {
+
+        Route::prefix('admin')
+
+            ->namespace($this->namespace)
+
+            ->group(base_path('routes/admin.php'));
+
     }
 }
